@@ -167,6 +167,12 @@
 
 - (void)showMessagesViewControllerWithSelectedContacts
 {
+    if ([self.delegate respondsToSelector:@selector(contactsSelectionDidFinished:)]) {
+        [self.delegate contactsSelectionDidFinished:self];
+    }
+    
+    /* Orignal workflow calls mail app for direct mail
+
     if ([MFMessageComposeViewController canSendText]) {
         MFMessageComposeViewController *messageComposeVC = [[MFMessageComposeViewController alloc] init];
         messageComposeVC.messageComposeDelegate = self;
@@ -177,6 +183,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Messaging not supported", @"") message:NSLocalizedString(@"Messaging on this device is not supported.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles: nil];
         [alert show];
     }
+     */
 }
 
 - (void)showEmailViewControllerWithSelectedContacts
