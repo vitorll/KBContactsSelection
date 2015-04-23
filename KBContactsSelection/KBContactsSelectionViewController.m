@@ -153,7 +153,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)buttonSelectPushed:(id)sender {
+- (IBAction)buttonSelectPushed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(contactsSelectionDidFinished:)]) {
+        [self.delegate contactsSelectionDidFinished:self];
+    }
+    
+    /* Orignal workflow calls mail or message apps
     if (_configuration.customSelectButtonHandler) {
         _configuration.customSelectButtonHandler([_kBContactsTableViewDataSource selectedContacts]);
     } else {
@@ -163,6 +169,7 @@
             [self showEmailViewControllerWithSelectedContacts];
         }
     }
+     */
 }
 
 - (void)showMessagesViewControllerWithSelectedContacts
